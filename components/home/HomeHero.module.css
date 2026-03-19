@@ -1,0 +1,84 @@
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 24px 80px; position: relative;
+  overflow: hidden; text-align: center;
+  background: var(--t-bg);
+}
+.dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, var(--t-border) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+}
+.glow {
+  position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,184,0,.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--t-bg3); border: 1px solid var(--t-border2);
+  border-radius: 30px; padding: 6px 16px 6px 10px;
+  font-family: var(--t-mono); font-size: 11px; color: var(--t-gold2);
+  margin-bottom: 36px; position: relative; z-index: 1;
+  animation: slideDown .6s ease both;
+}
+.badgeDot {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--t-gold); display: flex; align-items: center;
+  justify-content: center; font-size: 10px; color: #04080f; font-weight: 700;
+  animation: blink 2s infinite;
+}
+.eyebrow {
+  font-family: var(--t-mono); font-size: 11px; color: var(--t-text3);
+  letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 18px; position: relative; z-index: 1;
+  animation: slideDown .6s .05s ease both;
+}
+.h1 {
+  font-family: var(--t-sans); font-size: clamp(44px, 7vw, 88px);
+  font-weight: 800; line-height: 1.02; letter-spacing: -.03em;
+  max-width: 900px; margin-bottom: 24px;
+  color: var(--t-text); position: relative; z-index: 1;
+  animation: slideDown .6s .1s ease both;
+}
+.gold { color: var(--t-gold); }
+.dim { font-style: italic; font-family: var(--t-serif); font-weight: 300; color: var(--t-text3); }
+.sub {
+  font-family: var(--t-serif); font-size: clamp(16px, 2vw, 20px);
+  color: var(--t-text2); max-width: 580px; line-height: 1.65;
+  font-weight: 300; margin-bottom: 44px;
+  position: relative; z-index: 1;
+  animation: slideDown .6s .15s ease both;
+}
+.actions {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 72px; position: relative; z-index: 1;
+  animation: slideDown .6s .2s ease both;
+}
+.btnGold {
+  background: var(--t-gold); color: #04080f;
+  font-family: var(--t-sans); font-size: 13px; font-weight: 700;
+  padding: 13px 28px; border-radius: 6px; text-decoration: none;
+  transition: all .2s; letter-spacing: .02em;
+}
+.btnGold:hover { background: var(--t-gold2); transform: translateY(-1px); }
+.btnOutline {
+  background: transparent; border: 1px solid var(--t-border2);
+  color: var(--t-text2); font-family: var(--t-mono); font-size: 12px;
+  padding: 13px 28px; border-radius: 6px; text-decoration: none;
+  transition: all .2s; letter-spacing: .04em;
+}
+.btnOutline:hover { border-color: var(--t-gold); color: var(--t-gold); }
+.stats {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  position: relative; z-index: 1;
+  animation: slideDown .6s .25s ease both;
+}
+.stat { text-align: center; }
+.statN { font-family: var(--t-sans); font-size: 30px; font-weight: 800; color: var(--t-gold); line-height: 1; }
+.statL { font-family: var(--t-mono); font-size: 10px; color: var(--t-text3); margin-top: 4px; letter-spacing: .06em; text-transform: uppercase; }
+
+@media (max-width: 600px) { .stats { gap: 24px; } }

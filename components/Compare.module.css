@@ -1,0 +1,71 @@
+.section { padding: 96px 24px; }
+.inner { max-width: 1080px; margin: 0 auto; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.title em { font-style: italic; color: var(--accent); }
+
+.tableWrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table thead th {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.thFeat { text-align: left !important; color: var(--text3) !important; width: 42%; }
+.thPro  { color: var(--accent) !important; }
+
+.groupRow td {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 18px 16px 6px;
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+.dataRow td {
+  padding: 12px 16px;
+  color: var(--text2);
+  border-bottom: 1px solid rgba(56,189,248,.05);
+  text-align: center;
+  vertical-align: middle;
+}
+.dataRow:hover td { background: rgba(56,189,248,.02); }
+
+.featName { text-align: left !important; color: var(--text) !important; }
+
+.yes     { color: var(--green); font-size: 15px; }
+.no      { color: var(--text3); }
+.partial { font-family: var(--mono); font-size: 11px; color: var(--amber); background: rgba(245,158,11,.1); padding: 2px 8px; border-radius: 4px; }
+.text    { font-size: 12px; color: var(--text2); }

@@ -1,0 +1,25 @@
+.section { padding: 96px 24px; background: var(--t-bg); }
+.inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-family: var(--t-mono); font-size: 10px; color: var(--t-gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
+.title { font-family: var(--t-sans); font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.08; letter-spacing: -.02em; margin-bottom: 40px; color: var(--t-text); }
+.title em { font-style: italic; font-family: var(--t-serif); font-weight: 300; color: var(--t-gold2); }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.card {
+  background: var(--t-bg3); border: 1px solid var(--t-border);
+  border-radius: 12px; padding: 24px;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.card:hover { border-color: var(--t-border2); transform: translateY(-3px); }
+.corner {
+  position: absolute; bottom: -20px; right: -20px;
+  width: 80px; height: 80px; border-radius: 50%; opacity: .06;
+}
+.icon { font-size: 28px; margin-bottom: 14px; }
+.name { font-family: var(--t-sans); font-size: 18px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.01em; color: var(--t-text); }
+.desc { font-family: var(--t-serif); font-size: 14px; color: var(--t-text2); line-height: 1.6; margin-bottom: 16px; }
+.tag { font-family: var(--t-mono); font-size: 10px; padding: 3px 10px; border-radius: 20px; border: 1px solid; display: inline-block; font-weight: 500; }
+
+@media (max-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
