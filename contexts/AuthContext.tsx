@@ -1,7 +1,7 @@
 'use client'
+
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth'
-import { auth, googleProvider } from '@/lib/firebase'
+import { onAuthStateChanged, signInWithPopup, signOut, User, Auth, GoogleAuthProvider } from 'firebase/auth'
 
 interface AuthContextType {
   user: User | null
@@ -14,28 +14,43 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
-  signInWithGoogle: async () => {},
-  logout: async () => {},
+  signInWithGoogle: async () => { },
+  logout: async () => { },
   getToken: async () => null,
 })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser]       = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
 
+  const [auth, setAuth] = useState<Auth | null>(null)
+  const [googleProvider, setGoogleProvider] = useState<GoogleAuthProvider | null>(null)
+
+  // ✅ Load Firebase ONLY on client
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, u => {
-      setUser(u)
-      setLoading(false)
-    })
-    return () => unsub()
+    async function initFirebase() {
+      const { auth, googleProvider } = await import('@/lib/firebase')
+      setAuth(auth)
+      setGoogleProvider(googleProvider)
+
+      const unsub = onAuthStateChanged(auth, (u) => {
+        setUser(u)
+        setLoading(false)
+      })
+
+      return () => unsub()
+    }
+
+    initFirebase()
   }, [])
 
   async function signInWithGoogle() {
+    if (!auth || !googleProvider) return
     await signInWithPopup(auth, googleProvider)
   }
 
   async function logout() {
+    if (!auth) return
     await signOut(auth)
   }
 
