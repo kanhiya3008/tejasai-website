@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { AuthProvider } from '@/contexts/AuthContext'
+import AuthMount from './AuthMount'
 
 export const metadata: Metadata = {
   title: 'TejasAI — AI-Powered Products Built in India',
@@ -20,9 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <AuthMount>{children}</AuthMount>
       </body>
     </html>
   )
