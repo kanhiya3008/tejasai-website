@@ -26,22 +26,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState<Auth | null>(null)
   const [googleProvider, setGoogleProvider] = useState<GoogleAuthProvider | null>(null)
 
-  // ✅ Load Firebase ONLY on client
+  // ✅ Load Firebase ONLY on client (safe for Vercel)
   useEffect(() => {
+    let unsubscribe: (() => void) | undefined
+
     async function initFirebase() {
-      const { auth, googleProvider } = await import('@/lib/firebase')
-      setAuth(auth)
-      setGoogleProvider(googleProvider)
+      try {
+        const firebase = await import('@/lib/firebase')
 
-      const unsub = onAuthStateChanged(auth, (u) => {
-        setUser(u)
+        // ✅ If Firebase not ready, stop safely
+        if (!firebase.auth) {
+          setLoading(false)
+          return
+        }
+
+        setAuth(firebase.auth)
+        setGoogleProvider(firebase.googleProvider)
+
+        unsubscribe = onAuthStateChanged(firebase.auth, (u) => {
+          setUser(u)
+          setLoading(false)
+        })
+      } catch (error) {
+        console.error('Firebase init error:', error)
         setLoading(false)
-      })
-
-      return () => unsub()
+      }
     }
 
     initFirebase()
+
+    return () => {
+      if (unsubscribe) unsubscribe()
+    }
   }, [])
 
   async function signInWithGoogle() {
