@@ -1,4 +1,5 @@
 'use client'
+export const dynamic = 'force-dynamic'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -7,16 +8,16 @@ import { getDashboard, linkLicense, removeApp, type DashboardData } from '@/lib/
 import styles from './dashboard.module.css'
 
 const PLAN_COLOR: Record<string, string> = {
-  free:       '#888780',
-  trial:      '#f59e0b',
-  pro:        '#38bdf8',
+  free: '#888780',
+  trial: '#f59e0b',
+  pro: '#38bdf8',
   enterprise: '#a78bfa',
 }
 
 const PLAN_BG: Record<string, string> = {
-  free:       'rgba(136,135,128,.1)',
-  trial:      'rgba(245,158,11,.1)',
-  pro:        'rgba(56,189,248,.1)',
+  free: 'rgba(136,135,128,.1)',
+  trial: 'rgba(245,158,11,.1)',
+  pro: 'rgba(56,189,248,.1)',
   enterprise: 'rgba(167,139,250,.1)',
 }
 
@@ -24,13 +25,13 @@ export default function DashboardPage() {
   const { user, loading, logout, getToken } = useAuth()
   const router = useRouter()
 
-  const [data, setData]           = useState<DashboardData | null>(null)
-  const [fetching, setFetching]   = useState(true)
-  const [error, setError]         = useState('')
-  const [linkKey, setLinkKey]     = useState('')
-  const [linkMsg, setLinkMsg]     = useState('')
-  const [linkErr, setLinkErr]     = useState('')
-  const [copied, setCopied]       = useState<string | null>(null)
+  const [data, setData] = useState<DashboardData | null>(null)
+  const [fetching, setFetching] = useState(true)
+  const [error, setError] = useState('')
+  const [linkKey, setLinkKey] = useState('')
+  const [linkMsg, setLinkMsg] = useState('')
+  const [linkErr, setLinkErr] = useState('')
+  const [copied, setCopied] = useState<string | null>(null)
 
   // Redirect if not logged in
   useEffect(() => {

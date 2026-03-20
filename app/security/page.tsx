@@ -1,12 +1,14 @@
-import Navbar   from '@/components/Navbar'
-import Hero     from '@/components/Hero'
-import Stats    from '@/components/Stats'
+'use client'
+export const dynamic = 'force-dynamic'
+import Navbar from '@/components/Navbar'
+import Hero from '@/components/Hero'
+import Stats from '@/components/Stats'
 import Features from '@/components/Features'
-import Pricing  from '@/components/Pricing'
-import Compare  from '@/components/Compare'
-import Trial    from '@/components/Trial'
-import FAQ      from '@/components/FAQ'
-import Footer   from '@/components/Footer'
+import Pricing from '@/components/Pricing'
+import Compare from '@/components/Compare'
+import Trial from '@/components/Trial'
+import FAQ from '@/components/FAQ'
+import Footer from '@/components/Footer'
 
 export default function SecurityPage() {
   return (
