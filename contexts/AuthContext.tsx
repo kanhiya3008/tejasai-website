@@ -1,7 +1,8 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { onAuthStateChanged, signInWithPopup, signOut, User, Auth, GoogleAuthProvider } from 'firebase/auth'
+import { onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth'
+import type { Auth, GoogleAuthProvider } from 'firebase/auth'
 
 interface AuthContextType {
   user: User | null

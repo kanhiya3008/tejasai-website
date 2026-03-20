@@ -1,5 +1,5 @@
-import { getApp, getApps, initializeApp } from 'firebase/app'
-import { Auth, getAuth, GoogleAuthProvider } from 'firebase/auth'
+'use client'
+import type { Auth, GoogleAuthProvider } from 'firebase/auth'
 
 type FirebaseClient = {
   auth: Auth
@@ -22,11 +22,27 @@ function hasValidFirebaseEnv() {
 }
 
 export function getFirebaseClient(): FirebaseClient | null {
-  if (typeof window === 'undefined') return null
+  // Never initialize during build/prerender execution.
+  const nextPhase = process.env.NEXT_PHASE
+  if (typeof nextPhase === 'string' && nextPhase.toLowerCase().includes('build')) return null
+
+  const isBrowser =
+    typeof window !== 'undefined' &&
+    typeof window.document !== 'undefined' &&
+    typeof window.document.createElement === 'function'
+
+  if (!isBrowser) return null
   if (firebaseClient) return firebaseClient
   if (!hasValidFirebaseEnv()) return null
 
   try {
+    // Keep firebase SDK loading fully runtime/client-side to avoid
+    // accidental server-side initialization during prerender.
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getApp, getApps, initializeApp } = require('firebase/app')
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getAuth, GoogleAuthProvider } = require('firebase/auth')
+
     const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
     firebaseClient = {
       auth: getAuth(app),
