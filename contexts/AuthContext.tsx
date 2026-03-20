@@ -32,10 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     async function initFirebase() {
       try {
-        const firebase = await import('@/lib/firebase')
+        const { getFirebaseClient } = await import('@/lib/firebase')
+        const firebase = getFirebaseClient()
 
         // ✅ If Firebase not ready, stop safely
-        if (!firebase.auth) {
+        if (!firebase) {
           setLoading(false)
           return
         }
