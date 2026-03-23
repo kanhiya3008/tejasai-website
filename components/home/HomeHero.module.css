@@ -3,7 +3,9 @@
   align-items: center; justify-content: center;
   padding: 120px 24px 80px; position: relative;
   overflow: hidden; text-align: center;
-  background: var(--t-bg);
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(255, 184, 0, 0.08), transparent 70%),
+    var(--t-bg);
 }
 .dots {
   position: absolute; inset: 0;
@@ -16,6 +18,7 @@
   width: 700px; height: 400px;
   background: radial-gradient(ellipse, rgba(255,184,0,.05) 0%, transparent 65%);
   pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -24,6 +27,7 @@
   font-family: var(--t-mono); font-size: 11px; color: var(--t-gold2);
   margin-bottom: 36px; position: relative; z-index: 1;
   animation: slideDown .6s ease both;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 .badgeDot {
   width: 20px; height: 20px; border-radius: 50%;
@@ -43,6 +47,7 @@
   max-width: 900px; margin-bottom: 24px;
   color: var(--t-text); position: relative; z-index: 1;
   animation: slideDown .6s .1s ease both;
+  text-wrap: balance;
 }
 .gold { color: var(--t-gold); }
 .dim { font-style: italic; font-family: var(--t-serif); font-weight: 300; color: var(--t-text3); }
@@ -52,6 +57,7 @@
   font-weight: 300; margin-bottom: 44px;
   position: relative; z-index: 1;
   animation: slideDown .6s .15s ease both;
+  text-wrap: pretty;
 }
 .actions {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
@@ -62,22 +68,35 @@
   background: var(--t-gold); color: #04080f;
   font-family: var(--t-sans); font-size: 13px; font-weight: 700;
   padding: 13px 28px; border-radius: 6px; text-decoration: none;
-  transition: all .2s; letter-spacing: .02em;
+  transition: all .25s ease; letter-spacing: .02em;
+  box-shadow: 0 10px 25px rgba(255, 184, 0, 0.25);
 }
-.btnGold:hover { background: var(--t-gold2); transform: translateY(-1px); }
+.btnGold:hover { background: var(--t-gold2); transform: translateY(-2px) scale(1.01); }
 .btnOutline {
   background: transparent; border: 1px solid var(--t-border2);
   color: var(--t-text2); font-family: var(--t-mono); font-size: 12px;
   padding: 13px 28px; border-radius: 6px; text-decoration: none;
-  transition: all .2s; letter-spacing: .04em;
+  transition: all .25s ease; letter-spacing: .04em;
 }
-.btnOutline:hover { border-color: var(--t-gold); color: var(--t-gold); }
+.btnOutline:hover { border-color: var(--t-gold); color: var(--t-gold); transform: translateY(-2px); }
 .stats {
   display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
   position: relative; z-index: 1;
   animation: slideDown .6s .25s ease both;
 }
-.stat { text-align: center; }
+.stat {
+  text-align: center;
+  background: rgba(255, 184, 0, 0.04);
+  border: 1px solid rgba(255, 184, 0, 0.12);
+  border-radius: 10px;
+  padding: 14px 18px;
+  min-width: 120px;
+  transition: transform .25s ease, border-color .25s ease;
+}
+.stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 184, 0, 0.35);
+}
 .statN { font-family: var(--t-sans); font-size: 30px; font-weight: 800; color: var(--t-gold); line-height: 1; }
 .statL { font-family: var(--t-mono); font-size: 10px; color: var(--t-text3); margin-top: 4px; letter-spacing: .06em; text-transform: uppercase; }
 

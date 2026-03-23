@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import './globals.css'
-import AuthMount from './AuthMount'
+
+// Never render auth provider during server prerender/build.
+const AuthMount = dynamic(() => import('./AuthMount'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'TejasAI — AI-Powered Products Built in India',

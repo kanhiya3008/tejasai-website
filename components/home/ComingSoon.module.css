@@ -1,4 +1,9 @@
-.section { padding: 96px 24px; background: var(--t-bg); }
+.section {
+  padding: 96px 24px;
+  background:
+    radial-gradient(60% 40% at 90% 10%, rgba(167, 139, 250, 0.08), transparent 70%),
+    var(--t-bg);
+}
 .inner { max-width: 1100px; margin: 0 auto; }
 .eyebrow { font-family: var(--t-mono); font-size: 10px; color: var(--t-gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
 .title { font-family: var(--t-sans); font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.08; letter-spacing: -.02em; margin-bottom: 40px; color: var(--t-text); }
@@ -9,9 +14,18 @@
 .card {
   background: var(--t-bg3); border: 1px solid var(--t-border);
   border-radius: 12px; padding: 24px;
-  transition: all .25s; position: relative; overflow: hidden;
+  transition: all .28s ease; position: relative; overflow: hidden;
 }
-.card:hover { border-color: var(--t-border2); transform: translateY(-3px); }
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.08) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+}
+.card:hover { border-color: var(--t-border2); transform: translateY(-4px); }
+.card:hover::before { transform: translateX(120%); }
 .corner {
   position: absolute; bottom: -20px; right: -20px;
   width: 80px; height: 80px; border-radius: 50%; opacity: .06;

@@ -29,9 +29,18 @@ export function getFirebaseClient(): FirebaseClient | null {
   const isBrowser =
     typeof window !== 'undefined' &&
     typeof window.document !== 'undefined' &&
-    typeof window.document.createElement === 'function'
+    typeof window.document.createElement === 'function' &&
+    typeof window.location !== 'undefined'
 
-  if (!isBrowser) return null
+  if (!isBrowser) {
+    // Helps confirm if any server/prerender path is still reaching Firebase.
+    if (process.env.NEXT_PHASE) {
+      console.warn('[firebase] getFirebaseClient() called outside browser; skipping init.', {
+        NEXT_PHASE: process.env.NEXT_PHASE,
+      })
+    }
+    return null
+  }
   if (firebaseClient) return firebaseClient
   if (!hasValidFirebaseEnv()) return null
 
