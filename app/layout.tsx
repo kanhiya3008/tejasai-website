@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import './globals.css'
-
-// Never render auth provider during server prerender/build.
-const AuthMount = dynamic(() => import('./AuthMount'), { ssr: false })
+import AuthMountWrapper from './AuthMountWrapper'
 
 export const metadata: Metadata = {
   title: 'TejasAI — AI-Powered Products Built in India',
@@ -23,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <AuthMount>{children}</AuthMount>
+        <AuthMountWrapper>{children}</AuthMountWrapper>
       </body>
     </html>
   )
